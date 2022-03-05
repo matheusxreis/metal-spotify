@@ -1,11 +1,15 @@
 
 import { AnyAction } from "@reduxjs/toolkit"
-const initialState={}
+import { authReducer } from "./auth/reducer"
+import { userReducer } from "./user/reducer"
+
+const initialState: any={}
 
 export default function rootReducer(state=initialState, action: AnyAction){
 
 return {
-    state
+    auth: authReducer(state.auth, action),
+    user: userReducer(state.user, action)
 }
 
 

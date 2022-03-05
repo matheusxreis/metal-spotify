@@ -2,14 +2,15 @@ import { Button } from "./styles";
 import UserIcon from '../../images/UserIcon.svg'
 
 interface IGoButton {
-    text: string;
+    text: string | any;
+    onClick?:()=>any;
 }
 
-export function GoButton({text}: IGoButton){
+export function GoButton({text='', onClick}: IGoButton){
 
 
     return (
-        <Button>
+        <Button onClick={onClick}>
             <img src={UserIcon} />
             <p>{text}</p>
         </Button>

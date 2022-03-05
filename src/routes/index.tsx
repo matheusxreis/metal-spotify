@@ -5,6 +5,8 @@ import {Navigate, useNavigate, Route, Routes, BrowserRouter} from 'react-router-
 
 import Home from '../pages/Home'
 
+import UserHome from '../pages/UserHome'
+
 
 export default function MyRoutes(){
 
@@ -15,12 +17,24 @@ export default function MyRoutes(){
             <Routes>
 
 
+
+            {localStorage.getItem("token_token") ?
+            (
                 <Route
                 element={
-                    <Home />
+                    <UserHome />
                 }
                 path='/'
                 />
+            ) :
+            <Route
+            element={
+                <Home />
+            }
+            path='/'
+            />
+            }
+           
 
             </Routes>
         

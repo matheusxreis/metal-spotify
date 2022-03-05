@@ -4,7 +4,22 @@ import { ListenButton } from '../../components/ListenButton'
 import { RollDiv } from '../../components/RollDiv'
 import { Card } from '../../components/Card'
 
+import { useDispatch } from 'react-redux'
+
+import { SignIn } from '../../store/auth/action'
 export default function Home(){
+
+    const dispatch = useDispatch()
+
+
+
+    function handleSignIn(){
+    dispatch(
+        SignIn()
+    )
+
+
+}
 
 
     const array = [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12]
