@@ -8,6 +8,7 @@ import { Card } from '../../components/Card'
 import { useSelector, useDispatch } from 'react-redux'
 import { GetAlbuns } from '../../store/spotify/action'
 
+import { Link } from 'react-router-dom'
 import { spotifyApi } from '../../api'
 
 interface Itoken {
@@ -26,6 +27,7 @@ interface Ialbum {
     link:string;
     images: Iimage[];
     artist: string;
+    id:string;
 }
 
 
@@ -39,9 +41,9 @@ interface Iartists {
 export default function UserHome(){
 
     const dispatch = useDispatch()
-    const token = useSelector<Itoken>((state:Itoken)=>state.auth.token) 
-    const albuns: Ialbum[]  = useSelector((state:any)=>state.spotify.albuns)
-    const artists: Iartists[]  = useSelector((state:any)=>state.spotify.artists)
+    const token = useSelector<Itoken>((state:Itoken)=>state?.auth?.token) 
+    const albuns: Ialbum[]  = useSelector((state:any)=>state.spotify?.albuns)
+    const artists: Iartists[]  = useSelector((state:any)=>state.spotify?.artists)
 
 
     
@@ -63,8 +65,8 @@ useEffect(()=>{
         <h2>Albuns mais pesados que o próprio metal: </h2>
 
         <RollDiv>
-            {albuns.map(x=>(
-                <Card title={x.name} description={x.artist}>
+            {albuns && albuns.map(x=>(
+                <Card link={`/album/${x.id}`} title={x.name} description={x.artist}>
                      <img src={x.images[1].url} />
                 </Card>
             ))}
@@ -73,8 +75,10 @@ useEffect(()=>{
 
         <h2>Tente essas bandas: </h2>
         <RollDiv>
-            {artists.map(x=>(
-                <Card title={x.name} description={x.genres[1]}>
+            {artists && artists.map(x=>(
+                <Card 
+                link={''}
+                title={x.name} description={x.genres[1]}>
                     <img 
                     className='bandsImg'
                     src={x.images[0].url} />

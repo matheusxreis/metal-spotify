@@ -53,7 +53,7 @@ export default function Home(){
 
         <RollDiv>
             {array.map(x=>(
-                <Card title={'Vulgar Display of Power'} description={'Pantera'}>
+                <Card link={'' }title={'Vulgar Display of Power'} description={'Pantera'}>
                      <img src={Cover} />
                 </Card>
             ))}

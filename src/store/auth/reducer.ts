@@ -2,9 +2,12 @@ import { AnyAction } from "@reduxjs/toolkit";
 
 interface IinitialState {
     token:string;
-    goOn: false;
+    goOn: boolean;
 }
-let initialState: IinitialState; 
+let initialState: IinitialState ={
+    token: '',
+    goOn: false
+}
 
 export function authReducer(state=initialState, action: AnyAction){
     

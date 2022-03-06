@@ -1,20 +1,25 @@
 import { createGlobalStyle } from 'styled-components'
 
-
-export const GlobalStyle = createGlobalStyle `
+interface IGlobalStyle {
+    background:string
+}
+export const GlobalStyle = createGlobalStyle<IGlobalStyle> `
 
 body {
-    background: #1A1919;
+    background: ${({background})=> background==="normal" ? '#1A1919' : 'linear-gradient(to bottom, #000, #910614 20%, #910614 10%, rgba(0, 0, 0, 0.7), #000);' };
+
+    
     color: #FFF;
-    font-family: 'Montserrat', sans-serif;
+    height: ${({background})=> background==="normal" ? '' : '1300px'};
     letter-spacing: -7%;
 
     padding-top:60px;
-    padding-left: 320px;
+    padding-left: ${({background})=> background==="normal" ? '320px' : '295px'};
 
+    padding-bottom:0px;
 }
 
-h1, h2, p, img, h3, h4 {
+h1, h2, p, img, h3, h4{
     padding:0;
     margin:0;
 }

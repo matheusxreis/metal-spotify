@@ -2,10 +2,15 @@ import { AnyAction } from "@reduxjs/toolkit";
 import { routerActions } from "react-router-redux";
 
 interface IinitialState {
-   albuns: []
-   artists:[]
+   albuns: [];
+   artists:[];
+   albumPage: boolean;
 }
-let initialState: IinitialState; 
+let initialState: IinitialState = {
+    albuns: [],
+    artists: [],
+    albumPage: false,
+} 
 
 export function spotifyReducer(state=initialState, action: AnyAction){
 
@@ -19,6 +24,13 @@ export function spotifyReducer(state=initialState, action: AnyAction){
             return {...state,
                 artists: action.payload.artists
             }
+
+        case "spotify/IN_ALBUM_PAGE":
+            return {...state,
+            albumPage: true}
+        case "spotify/OUT_ALBUM_PAGE":
+            return {...state,
+            albumPage:false}
         default:
             return state;
     }
