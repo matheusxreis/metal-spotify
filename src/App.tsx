@@ -17,26 +17,21 @@ function App() {
   useEffect(()=>{
     setTimeout(()=>{
       setLoading(false)
-    }, 3000)
+    }, 1500)
   }, [])
 
   const albumPage = useSelector((state:any)=>state.spotify.albumPage)
   return (
     <>
     
-    { loading ? 
-    <>
-    <SkeletonComponent />
-    <GlobalStyle background={albumPage ? 'notnormal' : 'normal'} />
-      </>
-  :
+   
    <BrowserRouter>
     <MyRoutes />
     <Header />
     <Sidebar />
     <GlobalStyle background={albumPage ? 'notnormal' : 'normal'} />
     </BrowserRouter>
-   }
+   
     
     
     </>

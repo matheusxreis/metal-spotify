@@ -18,7 +18,7 @@ padding-left: 10px;
 
 export const Header = styled.div`
 display:flex;
-flex-wrap: wrap;
+//flex-wrap: wrap;
 height:300px;
 
 max-width:100%;
@@ -46,7 +46,7 @@ h3 {
 }
 
 h1 {
-    font-size:80px;
+    font-size:70px;
     font-weight:1000;
     font-family: arial;
     

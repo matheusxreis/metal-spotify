@@ -11,6 +11,7 @@ import { GetAlbuns } from '../../store/spotify/action'
 import { Link } from 'react-router-dom'
 import { spotifyApi } from '../../api'
 
+import { SkeletonComponent } from '../../components/SkeletonComponent'
 interface Itoken {
 
     auth: {
@@ -44,7 +45,13 @@ export default function UserHome(){
     const token = useSelector<Itoken>((state:Itoken)=>state?.auth?.token) 
     const albuns: Ialbum[]  = useSelector((state:any)=>state.spotify?.albuns)
     const artists: Iartists[]  = useSelector((state:any)=>state.spotify?.artists)
+    const [loading, setLoading] = useState<boolean>(true)
 
+    useEffect(()=>{
+      setTimeout(()=>{
+        setLoading(false)
+      }, 1500)
+    }, [])
 
     
 useEffect(()=>{
@@ -59,36 +66,46 @@ useEffect(()=>{
     const array = [0, 1, 2, 3, 5, 6]
 
     return (
-        <HomeContainer>
+
+      
+    
+<>
+
+        {loading ? (
+            <SkeletonComponent />
+        ): (
+            <HomeContainer>
        
 
-        <h2>Albuns mais pesados que o próprio metal: </h2>
-
-        <RollDiv>
-            {albuns && albuns.map(x=>(
-                <Card link={`/album/${x.id}`} title={x.name} description={x.artist}>
-                     <img src={x.images[1].url} />
-                </Card>
-            ))}
-           
-        </RollDiv>
-
-        <h2>Tente essas bandas: </h2>
-        <RollDiv>
-            {artists && artists.map(x=>(
-                <Card 
-                link={''}
-                title={x.name} description={x.genres[1]}>
-                    <img 
-                    className='bandsImg'
-                    src={x.images[0].url} />
-                </Card>
-            ))}
-           
-        </RollDiv>
-
-
-
-        </HomeContainer>
+            <h2>Albuns mais pesados que o próprio metal: </h2>
+    
+            <RollDiv>
+                {albuns && albuns.map(x=>(
+                    <Card link={`/album/${x.id}`} title={x.name} description={x.artist}>
+                         <img src={x.images[1].url} />
+                    </Card>
+                ))}
+               
+            </RollDiv>
+    
+            <h2>Tente essas bandas: </h2>
+            <RollDiv>
+                {artists && artists.map(x=>(
+                    <Card 
+                    link={''}
+                    title={x.name} description={x.genres[1]}>
+                        <img 
+                        className='bandsImg'
+                        src={x.images[0].url} />
+                    </Card>
+                ))}
+               
+            </RollDiv>
+    
+    
+    
+            </HomeContainer>
+        )}
+      </>
     )
 }
