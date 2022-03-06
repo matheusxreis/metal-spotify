@@ -1,4 +1,4 @@
-import { all, put, takeEvery, call} from 'redux-saga/effects'
+import { all, put, takeEvery, call, take} from 'redux-saga/effects'
 import { push } from 'react-router-redux'
 
 import { api }from '../../api'
@@ -12,11 +12,25 @@ interface IResponse {
 }
 function* signIn(){
 
-    console.log('aaaaaaa')
-    yield window.location.href= 'http://localhost:8080/auth/login'
-    
+   yield console.log('aaaaaaa')
+   yield window.location.href= 'http://localhost:8080/auth/login'
+
+   yield put({type: 'auth/SIGN_IN'})
 
    
+}
+
+
+export function* signOut(){
+
+    // yield call(
+    //     api.get,
+    //     '/auth/signout'
+    // )
+
+    yield put({
+        type: "auth/SIGN_OUT"
+    })
 }
 
 function* getToken(){
@@ -46,6 +60,7 @@ function* getToken(){
 export default function* authSaga(){
     yield all([
         takeEvery('@auth/SIGN_IN', signIn),
-        takeEvery('@auth/GET_TOKEN', getToken)
+        takeEvery('@auth/GET_TOKEN', getToken),
+        takeEvery('@auth/SIGN_OUT', signOut)
     ])
 }

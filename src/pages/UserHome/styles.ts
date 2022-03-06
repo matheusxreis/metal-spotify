@@ -30,8 +30,8 @@ div.panteraDiv {
     
    
     div.imageDiv {
-        width:309px;
-        height:290px;
+        max-width:309px;
+        height:309px;
         
 
         img {

@@ -5,7 +5,8 @@ export const CardContainer = styled.div`
 
 
 width: 600px;
-height: 300px;
+max-width:600px;
+height: 500px;
 margin:10px;
 
 padding:40px 30px;
@@ -14,6 +15,16 @@ text-align:center;
 
 background: #313131;
 border-radius: 4px;
+
+img {
+    width: 320px;
+}
+
+img.bandsImg{
+    border-radius:100%;
+    width: 300px;
+    height:300px;
+}
 
 h3{
     font-weight: 500;

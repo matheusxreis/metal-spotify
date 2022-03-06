@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
 
-import { HeaderContainer } from "./styles"
+import { HeaderContainer, OptionsDiv} from "./styles"
 
 import { useDispatch, useSelector } from "react-redux"
-import { SignIn, GetToken} from "../../store/auth/action"
+import { SignIn, GetToken, SignOut} from "../../store/auth/action"
 import { GoButton } from "../GoButton"
+
+import DownIcon from '../../images/Down.svg'
+import UpIcon from '../../images/Up.svg'
 
 import { useNavigate } from "react-router-dom"
 
@@ -23,20 +26,19 @@ export function Header(){
 
     const username = useSelector<Iusername>((state:Iusername)=> state.user?.username)
 
-    const [goToken, setGoToken] = useState<boolean>(false)
+    const [openOptionDiv, setOpenOptionDiv] = useState<boolean>(false)
+    const goOn = useSelector<boolean>((state:any)=>state.auth?.goOn)
 
     useEffect(()=>{
-        
 
-
-                dispatch(
-                    GetToken()
-                )
+        if(goOn){
+            dispatch(
+                GetToken()
+            )
+        }
+                
  
-            
-        
-        
-    }, [])
+    }, [goOn, dispatch])
      function handleSignIn(){
     
 
@@ -45,7 +47,19 @@ export function Header(){
         SignIn()
     )
 
-    setGoToken(true)
+    window.location.href= 'http://localhost:8080/auth/login'
+
+    }
+
+    function handleSignOut(){
+
+        dispatch(
+            SignOut()
+        )
+        
+        window.open('http://localhost:8080/auth/signout', '_blank')
+
+        window.location.reload()
     }
 
     return (
@@ -53,11 +67,21 @@ export function Header(){
         <HeaderContainer>
 
             { username && localStorage.getItem("token_token") ? 
-             <GoButton  text={username} />
+             <GoButton text={username}
+             onClick={()=>setOpenOptionDiv(!openOptionDiv)}
+             > 
+             <img src={ openOptionDiv ? UpIcon : DownIcon} alt="" />
+             </GoButton>
              :
              <GoButton onClick={handleSignIn} text={'Entrar'} />
          }
          
+         {openOptionDiv && (
+                <OptionsDiv>
+                <p onClick={()=>handleSignOut()}> Sair </p>     
+                </OptionsDiv>
+         )}
+      
         </HeaderContainer>
         </>
     )

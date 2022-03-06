@@ -14,5 +14,7 @@ export function userReducer(state=initialState, action: AnyAction){
         case "user/GET_USER_INFO":
             return {...state,
             username: action.payload.username}
+        default:
+            return state;
     }
 }

@@ -5,15 +5,15 @@ export const Button = styled.button `
 display:flex;
 align-items:center;
 
-width:215px;
-height:39px;
+width:235px;
+height:50px;
 
 border-radius:50px;
 
 background: #000;
 color: #fff;
 
-font-size:16px;
+font-size:20px;
 
 font-weight:600;
 margin: 23px;
