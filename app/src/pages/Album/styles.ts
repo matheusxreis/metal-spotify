@@ -73,7 +73,7 @@ div.musics {
     display:flex;
 
     border-radius:2px;
-    transition: 0.2s;
+    transition: 0.4s;
     img {
         //display:block;
         margin-left:auto;

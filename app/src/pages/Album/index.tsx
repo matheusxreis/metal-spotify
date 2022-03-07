@@ -8,21 +8,27 @@ import HeartFullIcon from '../../images/HeartFullIcon.svg'
 import { useLocation } from 'react-router-dom'
 import PlayIcon from '../../images/PlayIcon.svg'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
-import Skeleton, { SkeletonTheme }from 'react-loading-skeleton'
-
+import { SetLikedTrack } from '../../store/user/action'
 
 import { spotifyApi } from '../../api'
+import { GetAlbuns } from '../../store/spotify/action'
+
+
 export default function Album(){
 
     
     const token = useSelector<string>((state:any)=>state?.auth?.token) 
+    const tracksLiked:any = useSelector<any[]>((state:any)=>state.user.likes.tracks)
 
     const array = [1, 2, 3, 4, 5, 6, 8, 9, 10]
     const [albumId, setAlbumId] = useState<string>('')
     const [album, setAlbum] = useState<any>('')
+    
+    const [tracksLikedState, setTracksLikedState] = useState<any[]>([])
 
+    const dispatch = useDispatch()
     
     const location = useLocation()
 
@@ -44,7 +50,9 @@ export default function Album(){
                 tracks: response.data.tracks.items.map((x:any)=>{
                     return {
                         name: x.name,
-                        number: x.track_number 
+                        number: x.track_number,
+                        checked: tracksLiked && tracksLiked.find((y:any)=>y.title === x.name) ? true : false,
+
                     }
                     }
                 )
@@ -57,11 +65,29 @@ export default function Album(){
         getAlbum()
        
 
-        }, [location, token])
+        }, [location, token, tracksLiked])
     
-        // useEffect(()=>{
+    
+ 
+    
+    function setLikedTrack(title: string, artist: string){
 
-        // }, [locatio])
+      const payload = {
+        title,
+        artist
+      }
+      
+        dispatch(
+            SetLikedTrack(payload)
+        )
+      }  
+
+      useEffect(()=>{
+          if(album){
+          
+          }
+        
+    }, [tracksLiked, album])
     return (
 
         <>
@@ -102,8 +128,13 @@ export default function Album(){
 
                     </div>
                 
+                    {x.checked === true ? (
+                        <img src={HeartFullIcon} onClick={()=>{}} />
 
-                    <img src={HeartNotFullIcon} />
+                    ): (
+                        <img src={HeartNotFullIcon} onClick={()=>setLikedTrack( x.name, album?.artist)} />
+
+                    )}
                     </div>
                 ))}
 
