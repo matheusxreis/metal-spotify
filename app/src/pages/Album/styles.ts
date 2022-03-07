@@ -66,10 +66,46 @@ padding:10px;
 
 max-height: 3000px; 
 div.musics {
-    margin-top:30px;
+    margin-top:5px;
     margin-left:25px;
     margin-bottom:0;
+    padding:10px;
+    display:flex;
 
+    border-radius:2px;
+    transition: 0.2s;
+    img {
+        //display:block;
+        margin-left:auto;
+        margin-top:5px;
+        cursor: pointer;
+        opacity: 0;
+        width:0;
+        transition: opacity 0.2s;
+
+    }
+
+    h3{
+        span.number {
+        }
+    }
+       
+
+&:hover {
+    img {
+        opacity: 1;
+        width:auto;
+    }
+
+    h3{
+        span.number {
+            opacity: 0;
+            font-size:0;
+        }
+    }
+    background: rgb(145, 6, 20);
+
+}
 
 }
 

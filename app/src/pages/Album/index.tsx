@@ -22,6 +22,8 @@ export default function Album(){
     const array = [1, 2, 3, 4, 5, 6, 8, 9, 10]
     const [albumId, setAlbumId] = useState<string>('')
     const [album, setAlbum] = useState<any>('')
+
+    
     const location = useLocation()
 
     useEffect(()=>{
@@ -92,8 +94,16 @@ export default function Album(){
                
                 {album && album.tracks.map((x:any)=>(
                     <div className={'musics'}>
-                    <h3>{x.number} {x.name} </h3>
-                    <p> {album?.artist} </p>
+                    <div>
+                        <h3> <span className='number'>{x.number} </span>
+                        <img src={PlayIcon} />
+                        {x.name} </h3>
+                        <p> {album?.artist} </p>
+
+                    </div>
+                
+
+                    <img src={HeartNotFullIcon} />
                     </div>
                 ))}
 
