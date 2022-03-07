@@ -33,10 +33,10 @@ img {
 
 }
 div {
-    height:140px;
+    height:auto;
     display:block;
     margin-top:auto;
-    margin-bottom:0;
+   // margin-bottom: 50px;
     margin-left: 10px;
 }
 h3 {
@@ -113,7 +113,8 @@ height:60px;
 box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
 
 border-radius:100%;
-background: linear-gradient(151.67deg, rgba(145, 6, 20, 0.8) 35.66%, rgba(144, 15, 36, 0.795005) 51.4%, rgba(200, 82, 89, 0.8) 86.44%);
+//background: linear-gradient(151.67deg, rgba(145, 6, 20, 0.8) 35.66%, rgba(144, 15, 36, 0.795005) 51.4%, rgba(200, 82, 89, 0.8) 86.44%);
+background: rgb(145, 6, 20);
 
 
 transition: opacity 0.6s;
@@ -124,7 +125,7 @@ transition:0.6s;
 img {
     margin:5px auto;
     margin-left:8px;
-    filter: brightness(0.1);
+    filter: brightness(0);
     width: 50px;
     box-shadow: 0;
 }
@@ -132,5 +133,23 @@ img {
 &:hover {
     filter: brightness(0.8)
 }    
+
+`
+
+
+export const HeartDiv = styled.div`
+
+width:60px;
+height:60px;
+margin-left:30px;
+
+img {
+    width:50px;
+    margin-top:2px;
+    margin:10px auto;
+
+    cursor: pointer;
+
+}
 
 `

@@ -4,9 +4,9 @@ import styled from 'styled-components'
 export const CardContainer = styled.div`
 
 position:relative;
-width: 600px;
+width: 500px;
 max-width:600px;
-height: 500px;
+height: 400px;
 margin:10px;
 
 padding:40px 30px;
@@ -17,7 +17,7 @@ background: #313131;
 border-radius: 4px;
 
 img {
-    width: 320px;
+    width: 260px;
     border-radius:2px;
 }
 
@@ -68,12 +68,14 @@ p {
 
 export const PlayerDiv = styled.div`
 
-width:80px;
-height:80px;
-box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
+width:60px;
+height:60px;
+//box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
 
 border-radius:100%;
-background: linear-gradient(151.67deg, rgba(145, 6, 20, 0.8) 35.66%, rgba(144, 15, 36, 0.795005) 51.4%, rgba(200, 82, 89, 0.8) 86.44%);
+//background: linear-gradient(151.67deg, rgba(145, 6, 20, 0.8) 35.66%, rgba(144, 15, 36, 0.795005) 51.4%, rgba(200, 82, 89, 0.8) 86.44%);
+
+background: rgb(145, 6, 20);
 position: absolute;
 
 transition: opacity 0.6s;
@@ -85,9 +87,9 @@ right:0;
 
 img {
     margin: 5px auto;
-    margin-left:3px;
+    margin-left:5px;
     filter: brightness(0);
-    width: 70px;
+    width: 50px;
     box-shadow: 0;
 }
 

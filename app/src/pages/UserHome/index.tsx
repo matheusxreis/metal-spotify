@@ -77,7 +77,7 @@ useEffect(()=>{
             <HomeContainer>
        
 
-            <h2>Albuns mais pesados que o próprio metal: </h2>
+            <h2>Tente esses albuns: </h2>
     
             <RollDiv>
                 {albuns && albuns.map(x=>(

@@ -1,7 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import { AlbumContainer, Header, Content, PlayerDiv} from './styles'
+import { AlbumContainer, Header, Content, PlayerDiv, HeartDiv} from './styles'
 
-import Cover from '../../images/Cover.png'
+import HeartNotFullIcon from '../../images/HeartNotFullIcon.svg'
+import HeartFullIcon from '../../images/HeartFullIcon.svg'
+
+
 import { useLocation } from 'react-router-dom'
 import PlayIcon from '../../images/PlayIcon.svg'
 
@@ -75,9 +78,14 @@ export default function Album(){
 
 
             <Content>
-                <PlayerDiv>
-                    <img src={PlayIcon} />
-                </PlayerDiv>
+                <div style={{display:"flex"}}>
+                    <PlayerDiv>
+                        <img src={PlayIcon} />
+                    </PlayerDiv>
+                     <HeartDiv>
+                     <img src={HeartNotFullIcon} />
+                    </HeartDiv> 
+                </div>
                 <div className={'title'}>
                 <h3> # Título </h3> 
                 </div>

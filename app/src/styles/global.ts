@@ -6,7 +6,7 @@ interface IGlobalStyle {
 export const GlobalStyle = createGlobalStyle<IGlobalStyle> `
 
 body {
-    background: ${({background})=> background==="normal" ? '#1A1919' : 'linear-gradient(to bottom, #000, #910614 20%, #910614 10%, rgba(0, 0, 0, 0.7), #000);' };
+    background: ${({background})=> background==="normal" ? '#1A1919' : 'linear-gradient(to bottom, #000, #910614 30%, #910614 20%, #000);' };
 
     
     color: #FFF;
