@@ -73,7 +73,8 @@ export function Sidebar(){
 
               </FlexContainer>
 
-              <FlexContainer isActived={false}>
+              <Link to='/tracks'>
+              <FlexContainer isActived={location==='/tracks'}>
 
                   <img 
                   src={LikesIcon}
@@ -82,6 +83,7 @@ export function Sidebar(){
                   <p>Músicas Curtidas</p>
 
                   </FlexContainer>
+              </Link>  
             </div>
             </SidebarContainer>
     )

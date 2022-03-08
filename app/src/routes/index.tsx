@@ -13,6 +13,7 @@ import { useLocation } from 'react-router-dom'
 
 import { useDispatch } from 'react-redux'
 import { OutAlbumPage, InAlbumPage } from '../store/spotify/action'
+import LikedTracks from '../pages/LikedTracks'
 export default function MyRoutes(){
 
 
@@ -23,6 +24,8 @@ export default function MyRoutes(){
     useEffect(()=>{
 
         const [, page,] = location.pathname.split('/')
+
+        console.log(page)
         if(page === 'album'){
           dispatch(
               InAlbumPage()
@@ -65,6 +68,14 @@ export default function MyRoutes(){
             }
             path='/album/:id'
             />  
+
+            <Route
+            element={
+                <LikedTracks />
+            }
+            path='/tracks'
+            />  
+           
            
 
             </Routes>

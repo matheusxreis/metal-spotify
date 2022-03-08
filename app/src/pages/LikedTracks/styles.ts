@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const AlbumContainer = styled.div`
+export const LikedContainer = styled.div`
 
 margin-top:30px;
 height:300px;
@@ -9,6 +9,32 @@ height:300px;
 width:100%;
 
 max-width:100%;
+
+table {
+    width:100%;
+    
+    
+}
+
+
+
+tbody {
+    width:100%;
+   
+
+}
+th{
+    width:35%;
+    text-align: left;
+
+}
+
+
+td{
+
+    text-align: left;
+    width:35%;
+}
 
 
 /* background: linear-gradient(to bottom, #910614 40%, #910614 30%, rgba(0, 0, 0, 0.7)); */
@@ -67,17 +93,37 @@ max-width:100%;
 
 max-width:100%;
 padding:10px;
+@media(max-width:1100px){
+       table{
+        width:900px;
+       } 
 
+       overflow-y:scroll;
+
+    }
+thead {
+    width: 100%;
+
+}
 max-height: 3000px; 
 div.musics {
     margin-top:5px;
     margin-left:25px;
     margin-bottom:0;
     padding:10px;
-    display:flex;
+   
+
+
+    
 
     border-radius:2px;
     transition: 0.4s;
+
+    img.cover {
+        opacity:1;
+        width:50px;
+        margin:0px 5px;
+    }
     img {
         //display:block;
         margin-left:auto;
@@ -86,11 +132,13 @@ div.musics {
         opacity: 0;
         width:0;
         transition: opacity 0.2s;
+        
 
     }
 
     h3{
         span.number {
+
         }
     }
        
@@ -99,6 +147,11 @@ div.musics {
     img {
         opacity: 1;
         width:auto;
+    }
+    img.cover {
+        opacity:1;
+        width:50px;
+        margin:0px 5px;
     }
 
     h3{
@@ -114,18 +167,30 @@ div.musics {
 }
 
 div.title {
+
+    padding:5px;
+    max-width:100%;
+
+
+    h3:first-child {
+        //margin-left:30px;
+
+    }
     h3 {
     font-size:24px;
     font-weight:200;
     color:rgba(252, 252, 252, 0.5);
     margin-top:5px;
-    margin-left:30px;
+    //margin-right:30px;
    // margin-right:30px;
 
     padding-bottom:10px;
 
-    border-bottom: 0.5px solid rgba(252, 252, 252, 0.5);
-}   
+}
+
+
+border-bottom: 0.5px solid rgba(252, 252, 252, 0.5);
+
 }
 
 h3 {

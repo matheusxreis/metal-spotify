@@ -10,7 +10,7 @@ import PlayIcon from '../../images/PlayIcon.svg'
 
 import { useSelector, useDispatch } from 'react-redux'
 
-import { SetLikedTrack } from '../../store/user/action'
+import { SetLikedTrack, RemoveLikedTracks } from '../../store/user/action'
 
 import { spotifyApi } from '../../api'
 import { GetAlbuns } from '../../store/spotify/action'
@@ -20,7 +20,7 @@ export default function Album(){
 
     
     const token = useSelector<string>((state:any)=>state?.auth?.token) 
-    const tracksLiked:any = useSelector<any[]>((state:any)=>state.user.likes.tracks)
+    const tracksLiked:any = useSelector<any[]>((state:any)=>state?.user?.likes?.tracks)
 
     const array = [1, 2, 3, 4, 5, 6, 8, 9, 10]
     const [albumId, setAlbumId] = useState<string>('')
@@ -70,11 +70,19 @@ export default function Album(){
     
  
     
-    function setLikedTrack(title: string, artist: string){
+    function setLikedTrack(title: string, artist: string, image:string, album:string){
 
-      const payload = {
+        const [ , month, day, year] = new Date().toString().split(' ')
+
+
+      
+
+         const payload = {
         title,
-        artist
+        artist,
+        image,
+        album,
+        added_at: `${day}/${month}/${year}`
       }
       
         dispatch(
@@ -82,12 +90,16 @@ export default function Album(){
         )
       }  
 
+    function removeLikedTrack(title:string){
+        dispatch(
+            RemoveLikedTracks(title)
+        )
+    }
+
       useEffect(()=>{
-          if(album){
-          
-          }
-        
-    }, [tracksLiked, album])
+         
+        console.log(tracksLiked)
+    }, [tracksLiked])
     return (
 
         <>
@@ -129,10 +141,10 @@ export default function Album(){
                     </div>
                 
                     {x.checked === true ? (
-                        <img src={HeartFullIcon} onClick={()=>{}} />
+                        <img src={HeartFullIcon} onClick={()=>removeLikedTrack(x.name)} />
 
                     ): (
-                        <img src={HeartNotFullIcon} onClick={()=>setLikedTrack( x.name, album?.artist)} />
+                        <img src={HeartNotFullIcon} onClick={()=>setLikedTrack( x.name, album?.artist, album?.image, album?.name)} />
 
                     )}
                     </div>

@@ -4,7 +4,47 @@ import { authReducer } from "./auth/reducer"
 import { userReducer } from "./user/reducer"
 import { spotifyReducer } from "./spotify/reducer"
 
-const initialState: any={}
+
+interface IinitialStateRoot {
+    auth: {
+        token:string;
+        goOn:boolean;
+    },
+    user: {
+        username:string,
+        likes: {
+            username:string;
+            albuns: any[];
+            tracks: any[]
+        }
+    }
+
+    spotify: {
+        albuns: any[];
+        artists: any[];
+        albumPage: boolean;
+    }
+}
+let initialState: IinitialStateRoot = {
+    auth: {
+        token:'',
+        goOn: false
+    },
+    user: {
+        username:'',
+        likes: {
+            username:'',
+            albuns: [],
+            tracks: []
+        }
+    },
+
+    spotify: {
+        albuns: [],
+        artists: [],
+        albumPage: false
+    }
+}
 
 export default function rootReducer(state=initialState, action: AnyAction){
 

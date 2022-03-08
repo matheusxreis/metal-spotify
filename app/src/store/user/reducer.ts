@@ -1,9 +1,18 @@
 import { AnyAction } from "@reduxjs/toolkit";
+import { trackForMutations } from "@reduxjs/toolkit/dist/immutableStateInvariantMiddleware";
 import { isCallLikeExpression } from "typescript";
 
+
+interface Itracks {
+    title: string;
+    artist: string;
+    image: string;
+    album: string;
+    added_at?: Date | string; 
+}
 interface Ilikes {
     albuns: any[];
-    tracks: any[];
+    tracks: Itracks[];
     username: string;
 }
 
@@ -17,7 +26,7 @@ let initialState: IinitilState = {
     likes: {
         albuns: [],
         tracks: [],
-        username:''
+        username:""
     }
 };
 
@@ -31,13 +40,25 @@ export function userReducer(state=initialState, action: AnyAction){
 
         case "user/ADD_NEW_LIKED_TRACK":
             console.log(action.payload.tracks)
-            console.log(state.likes.tracks)
+            console.log(state.likes)
 
-            return {...state,
-            likes: {
-                ...state.likes, 
-                 tracks:[...state.likes.tracks, action.payload.tracks],
-                 username: state.username}}
+            return {
+                ...state,
+                likes: {
+                    ...state.likes,
+                    tracks: [...state.likes.tracks, action.payload.tracks]
+                }
+                
+            }
+        case "user/REMOVE_LIKED_TRACK":
+            return {
+                ...state,
+                likes: {
+                    ...state.likes,
+                    tracks: state.likes.tracks.filter(x=>x.title!==action.payload.track_name)
+                }
+                
+            }
         default:
             return state;
     }

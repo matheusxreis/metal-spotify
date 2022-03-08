@@ -2,8 +2,8 @@ import { AnyAction } from "@reduxjs/toolkit";
 import { routerActions } from "react-router-redux";
 
 interface IinitialState {
-   albuns: [];
-   artists:[];
+   albuns: any[];
+   artists:any[];
    albumPage: boolean;
 }
 let initialState: IinitialState = {
