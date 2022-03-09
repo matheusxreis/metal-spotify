@@ -5,7 +5,8 @@ interface ITrack {
     album: string;
     added_at?: Date | string; 
     time: number,
-    albumId: string
+    albumId: string,
+    albumSize: number
 }
 
 export function GetUserInfo(){

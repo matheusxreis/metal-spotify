@@ -11,6 +11,7 @@ interface Itracks {
     added_at?: Date | string; 
     time:string;
     albumId:string;
+    albumSize: number;
 }
 
 interface Ialbuns {
@@ -51,11 +52,19 @@ export function userReducer(state=initialState, action: AnyAction){
             const songAlreadyExist = state.likes.tracks.find(x=> x===action.payload.tracks)
 
             if(!songAlreadyExist){
+                console.log(action.payload.tracks.albumSize)
+                console.log(
+                    state.likes.tracks.filter(x=>x.albumId === action.payload.tracks.albumId).length
+                )
                 return {
                     ...state,
                     likes: {
                         ...state.likes,
-                        tracks: [...state.likes.tracks, action.payload.tracks]
+                        tracks: [...state.likes.tracks, action.payload.tracks],
+                        albuns: 
+                        action.payload.tracks.albumSize
+                        === state.likes.tracks.filter(x=>x.albumId === action.payload.tracks.albumId).length - 1
+                        ? action.payload.tracks.albumId : state.likes.albuns 
                     }
                     
                 }

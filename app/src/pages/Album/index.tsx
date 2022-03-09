@@ -80,12 +80,12 @@ export default function Album(){
     
  
     
-    function setLikedTrack(title: string, artist: string, image:string, album:string, time:number, albumId:string){
+    function setLikedTrack(title: string, artist: string, image:string, album:string, time:number, albumId:string, albumSize:number){
 
         const [ , month, day, year] = new Date().toString().split(' ')
 
 
-      
+    
 
          const payload = {
         title,
@@ -94,7 +94,8 @@ export default function Album(){
         album,
         added_at: `${day}/${month}/${year}`,
         time,
-        albumId
+        albumId,
+        albumSize
       }
       
         dispatch(
@@ -189,7 +190,7 @@ export default function Album(){
                         <img src={HeartFullIcon} onClick={()=>removeLikedTrack(x.name)} />
 
                     ): (
-                        <img src={HeartNotFullIcon} onClick={()=>setLikedTrack( x.name, album?.artist, album?.image, album?.name, x.time, albumId)} />
+                        <img src={HeartNotFullIcon} onClick={()=>setLikedTrack( x.name, album?.artist, album?.image, album?.name, x.time, albumId, album.tracks.length)} />
 
                     )}
                     </div>
