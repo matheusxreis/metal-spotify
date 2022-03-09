@@ -16,7 +16,6 @@ export function GetUserInfo(){
 }
 
 export function SetLikedTrack(tracks: ITrack){
-    console.log('FOI NA SEGUNDA')
 
     return {
         type: 'user/ADD_NEW_LIKED_TRACK',
@@ -26,6 +25,26 @@ export function SetLikedTrack(tracks: ITrack){
     }
 }
 
+export function SetLikedAlbum(tracks: ITrack[]){
+    console.log(tracks)
+    return {
+        type: "user/ADD_SEVERAL_LIKED_TRACKS",
+        payload: {
+            tracks
+        }
+    }
+}
+
+
+
+export function RemoveLikedAlbum(albumId: string){
+    return {
+        type:"user/REMOVE_SEVERAL_LIKED_TRACKS",
+        payload: {
+            albumId
+        }
+    }
+}
 export function RemoveLikedTracks(track_name: string){
 
     return {

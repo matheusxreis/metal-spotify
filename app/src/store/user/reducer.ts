@@ -12,8 +12,12 @@ interface Itracks {
     time:string;
     albumId:string;
 }
+
+interface Ialbuns {
+    albumId: string;
+}
 interface Ilikes {
-    albuns: any[];
+    albuns: Ialbuns[];
     tracks: Itracks[];
     username: string;
 }
@@ -44,14 +48,52 @@ export function userReducer(state=initialState, action: AnyAction){
             console.log(action.payload.tracks)
             console.log(state.likes)
 
+            const songAlreadyExist = state.likes.tracks.find(x=> x===action.payload.tracks)
+
+            if(!songAlreadyExist){
+                return {
+                    ...state,
+                    likes: {
+                        ...state.likes,
+                        tracks: [...state.likes.tracks, action.payload.tracks]
+                    }
+                    
+                }
+            }else {
+                return state
+            }
+          
+        case "user/ADD_SEVERAL_LIKED_TRACKS":
+
+        const albumLiked = {
+            albumId: action.payload.tracks[0].albumId
+        }
+    
+            return {
+                ...state,
+                likes:{
+                    ...state.likes,
+                tracks: state.likes.tracks.concat(action.payload.tracks),
+                albuns: [...state.likes.albuns, albumLiked]
+                },
+               
+        
+            
+            }
+        
+      
+        case "user/REMOVE_SEVERAL_LIKED_TRACKS":
+            console.log(action.payload.albumId)
             return {
                 ...state,
                 likes: {
                     ...state.likes,
-                    tracks: [...state.likes.tracks, action.payload.tracks]
+                    tracks: state.likes.tracks.filter((x:Itracks)=>x.albumId !== action.payload.albumId),
+                    albuns: state.likes.albuns.filter(x=>x.albumId!==action.payload.albumId)
+
                 }
-                
-            }
+            }   
+      
         case "user/REMOVE_LIKED_TRACK":
             return {
                 ...state,
