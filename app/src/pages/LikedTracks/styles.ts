@@ -75,7 +75,7 @@ h3 {
 }
 
 h1 {
-    font-size:70px;
+    font-size:50px;
     font-weight:1000;
     font-family: arial;
     
@@ -103,12 +103,13 @@ padding:10px;
     }
 thead {
     width: 100%;
+    img {
+        width:20px;
+    }
 
 }
 max-height: 3000px; 
 div.musics {
-    margin-top:5px;
-    margin-left:25px;
     margin-bottom:0;
     padding:10px;
    
@@ -126,8 +127,9 @@ div.musics {
     }
     img {
         //display:block;
-        margin-left:auto;
+        margin-left:5px;
         margin-top:5px;
+
         cursor: pointer;
         opacity: 0;
         width:0;
@@ -137,16 +139,20 @@ div.musics {
     }
 
     h3{
+        font-size:16px;
         span.number {
-
+            margin-right:10px;
         }
     }
        
+    p {
+        font-size:16px;
+    }
 
 &:hover {
     img {
         opacity: 1;
-        width:auto;
+        width:30px;
     }
     img.cover {
         opacity:1;
@@ -158,6 +164,7 @@ div.musics {
         span.number {
             opacity: 0;
             font-size:0;
+            margin-right:0;
         }
     }
     background: rgb(145, 6, 20);
@@ -242,19 +249,3 @@ img {
 `
 
 
-export const HeartDiv = styled.div`
-
-width:60px;
-height:60px;
-margin-left:30px;
-
-img {
-    width:50px;
-    margin-top:2px;
-    margin:10px auto;
-
-    cursor: pointer;
-
-}
-
-`

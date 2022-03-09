@@ -9,6 +9,8 @@ interface Itracks {
     image: string;
     album: string;
     added_at?: Date | string; 
+    time:string;
+    albumId:string;
 }
 interface Ilikes {
     albuns: any[];

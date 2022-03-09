@@ -49,7 +49,7 @@ h3 {
 }
 
 h1 {
-    font-size:70px;
+    font-size:50px;
     font-weight:1000;
     font-family: arial;
     

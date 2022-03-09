@@ -30,11 +30,18 @@ export default function MyRoutes(){
           dispatch(
               InAlbumPage()
           )
-        }else{
+        }else if(page === 'tracks'){
+            dispatch(
+                InAlbumPage()
+            )
+        }
+        else{
             dispatch(
             OutAlbumPage()
             )
         }
+
+        
 
     }, [location, dispatch])
 

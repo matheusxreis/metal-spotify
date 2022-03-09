@@ -4,6 +4,8 @@ interface ITrack {
     image: string;
     album: string;
     added_at?: Date | string; 
+    time: number,
+    albumId: string
 }
 
 export function GetUserInfo(){

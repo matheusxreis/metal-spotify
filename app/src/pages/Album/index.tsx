@@ -43,6 +43,7 @@ export default function Album(){
             }
            const response = await spotifyApi.get(`/albums/${query}`, config)
             
+           console.log(response.data)
             setAlbum ({
                 artist: response.data.artists[0].name,
                 image: response.data.images[0].url,
@@ -52,9 +53,8 @@ export default function Album(){
                         name: x.name,
                         number: x.track_number,
                         checked: tracksLiked && tracksLiked.find((y:any)=>y.title === x.name) ? true : false,
-
-                    }
-                    }
+                        time: (x.duration_ms/60000).toString().slice(0, 4)
+                    }}
                 )
             })
 
@@ -70,7 +70,7 @@ export default function Album(){
     
  
     
-    function setLikedTrack(title: string, artist: string, image:string, album:string){
+    function setLikedTrack(title: string, artist: string, image:string, album:string, time:number, albumId:string){
 
         const [ , month, day, year] = new Date().toString().split(' ')
 
@@ -82,7 +82,9 @@ export default function Album(){
         artist,
         image,
         album,
-        added_at: `${day}/${month}/${year}`
+        added_at: `${day}/${month}/${year}`,
+        time,
+        albumId
       }
       
         dispatch(
@@ -144,7 +146,7 @@ export default function Album(){
                         <img src={HeartFullIcon} onClick={()=>removeLikedTrack(x.name)} />
 
                     ): (
-                        <img src={HeartNotFullIcon} onClick={()=>setLikedTrack( x.name, album?.artist, album?.image, album?.name)} />
+                        <img src={HeartNotFullIcon} onClick={()=>setLikedTrack( x.name, album?.artist, album?.image, album?.name, x.time, albumId)} />
 
                     )}
                     </div>
