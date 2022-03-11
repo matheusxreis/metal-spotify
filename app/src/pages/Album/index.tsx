@@ -46,16 +46,12 @@ export default function Album(){
                 headers: { Authorization: token}
             }
            const response = await spotifyApi.get(`/albums/${query}`, config)
-            
-           console.log('changed')
-           const albumExist = albunsLiked.find((x:any)=>x.albumId===albumId)
-           console.log(albunsLiked)
+  
            setAlbum ({
                 artist: response.data.artists[0].name,
                 image: response.data.images[0].url,
                 name: response.data.name,
-                allAlbumLiked: 
-                    albunsLiked.find((x:any)=>x.albumId===albumId) ? true : false,
+                allAlbumLiked:  albunsLiked.find((x:any)=>x.albumId===albumId),
                 tracks: response.data.tracks.items.map((x:any)=>{
                     console.log(tracksLiked.find((y:any)=>y.title !== x.name) ? true : false,)
 
@@ -79,7 +75,9 @@ export default function Album(){
     
     
  
-    
+    useEffect(()=>{
+        console.log(albunsLiked)
+    },[albunsLiked])
     function setLikedTrack(title: string, artist: string, image:string, album:string, time:number, albumId:string, albumSize:number){
 
         const [ , month, day, year] = new Date().toString().split(' ')

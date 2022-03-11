@@ -67,6 +67,38 @@ p {
     
 }
 
+@media(max-width:1000px){
+    width: 270px;
+    max-width:270px;
+    height: 270px;
+}
+
+@media(max-width:560px){
+
+    width: 100px;
+    max-width:100px;
+    height: 100px;
+
+    img {
+        width:100px;
+
+    }
+    img.bandsImg{
+    
+        width:100px;
+        height:100px;
+    }
+
+    p, h3{
+        font-size:0;
+        opacity:1
+    }
+
+    div{
+        opacity:0;
+    }
+}
+
 `
 
 export const PlayerDiv = styled.div`

@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const RollDivContainer = styled.div `
 
 overflow-x: scroll;
+overflow-y:none;
 display:flex;
 justify-content: space-between;
 

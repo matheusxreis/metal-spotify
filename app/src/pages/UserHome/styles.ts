@@ -8,8 +8,27 @@ padding-top: 300px;
 max-width:100%;
 
 div.containerContent{
-    position:absolute;
-    
+    position:relative;
+    width:100%;
+}
+
+@media(max-width:1200px){
+    div.containerContent {
+        margin-top:60px;
+    }
+}
+
+@media(max-width:1000px){
+    div.containerContent {
+        margin-top:80px;
+    }
+}
+
+@media(max-width:560px){
+    div.containerContent {
+        margin-top:20x;
+    }
+
 }
 div{
     z-index:2;
@@ -78,14 +97,3 @@ div.panteraDiv {
 }
 `
 
-export const PlaylistDiv = styled.div`
-padding-left:10px;
-
-background: linear-gradient(rgba(0,0,0,.6) 0,#121212 100%), rgb(200, 80, 96);
-width:100%;
-height:450px;
-position:absolute;
-padding-top:90px;
-top:0;
-//z-index:0;
-`

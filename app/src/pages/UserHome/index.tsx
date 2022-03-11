@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { HomeContainer, PlaylistDiv } from './styles'
+import { HomeContainer } from './styles'
 import Cover from '../../images/Cover.png'
 import { ListenButton } from '../../components/ListenButton'
 import { RollDiv } from '../../components/RollDiv'
@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom'
 import { spotifyApi } from '../../api'
 
 import { SkeletonComponent } from '../../components/SkeletonComponent'
+import { PlaylistContainer } from '../../components/PlaylistContainer'
 interface Itoken {
 
     auth: {
@@ -76,11 +77,8 @@ useEffect(()=>{
             <SkeletonComponent />
         ): (
             <HomeContainer>
-                <PlaylistDiv>
-                <h1>Boa noite</h1>
-
-                <PlaylistCard />
-                </PlaylistDiv>
+             
+             <PlaylistContainer/>
                 
             <div className={'containerContent'}>
            <div> <h2>Tente esses albuns </h2></div>

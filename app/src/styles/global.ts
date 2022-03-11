@@ -20,7 +20,7 @@ body {
     padding-bottom:0px;
 
     @media(max-width:800px){
-        padding-left: ${({background})=> background==="normal" ? '210px' : '180px'};
+        padding-left: ${({background})=> background==="normal" ? '200px' : '180px'};
 
     }
 }

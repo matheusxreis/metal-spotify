@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { PlaylistCardContainer } from './styles'
 import Cover from '../../images/Cover.png'
+import LikesIcon from '../../images/Likes.svg'
 
 import PlayIcon from '../../images/PlayIcon.svg'
 
@@ -8,30 +9,40 @@ import { ChangeColorCard, RemoveColorCard} from '../../store/theme/action'
 
 import { useDispatch, useSelector } from 'react-redux'
 
+import { Link } from 'react-router-dom'
 
-export function PlaylistCard(){
+interface IPlaylistCard {
+    image?:string;
+    description:string;
+    color:string;
+}
+export function PlaylistCard({image, description, color}: IPlaylistCard){
 
     const dispatch = useDispatch()
-    const colorCard = useSelector((state:any)=>state.theme.colorCard)
-
-    const [color, setColor] = useState<number>(0)
-
-    useEffect(()=>{
-        console.log(colorCard)
-    }, [colorCard])
-
-
 
 
     
 return (
-<PlaylistCardContainer 
-onMouseOut={()=>dispatch(RemoveColorCard())}
-onMouseEnter={()=>dispatch(ChangeColorCard('red'))}>
-    <img src={Cover} alt="image"/> <p> Músicas curtidas </p>
+    <Link to='/'>
+            <PlaylistCardContainer 
+            onMouseOut={()=>dispatch(RemoveColorCard())}
+            onMouseMove={()=>dispatch(ChangeColorCard(color))}>
+                <img 
+                className='imagePlaylist'
+                src={image ? image : LikesIcon }
+                 alt="image"
+                 onMouseMove={()=>dispatch(ChangeColorCard(color))}
+                 />
+                <p
+                onMouseMove={()=>dispatch(ChangeColorCard(color))}
+                > {description} </p>
 
-    <img src={PlayIcon} className={'play'}/>
-</PlaylistCardContainer>
+                <img 
+                onClick={()=>dispatch(ChangeColorCard(color))}
+                src={PlayIcon} 
+                className={'play'}/>
+            </PlaylistCardContainer>
+    </Link>
 )
 
     

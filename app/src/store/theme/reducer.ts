@@ -13,12 +13,12 @@ export function themeReducer(state=initialState, action: AnyAction){
     switch(action.type){
 
         case "theme/CHANGE_COLOR_CARD":
-            return action.payload
+            return {...state, colorCard:action.payload}
         
         case "theme/REMOVE_COLOR_CARD":
             return ''
         default:
-            return state;
+            return {...state, colorCard:""};
     }
     
 

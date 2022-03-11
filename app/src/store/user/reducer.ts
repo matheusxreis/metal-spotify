@@ -16,6 +16,7 @@ interface Itracks {
 
 interface Ialbuns {
     albumId: string;
+    albumSize:number;
 }
 interface Ilikes {
     albuns: Ialbuns[];
@@ -46,69 +47,63 @@ export function userReducer(state=initialState, action: AnyAction){
             username: action.payload.username}
 
         case "user/ADD_NEW_LIKED_TRACK":
-            console.log(action.payload.tracks)
-            console.log(state.likes)
+         
+            const trackAlreadyExist = state.likes.tracks.find(x=>x===action.payload.tracks)
+              
+            const albumIsFull = action.payload.tracks
 
-            const songAlreadyExist = state.likes.tracks.find(x=> x===action.payload.tracks)
-
-            if(!songAlreadyExist){
-                console.log(action.payload.tracks.albumSize)
-                console.log(
-                    state.likes.tracks.filter(x=>x.albumId === action.payload.tracks.albumId).length
-                )
+            const tracksFromAlbum = state.likes.tracks.filter(x=>x.albumId === action.payload.albumId)
                 return {
                     ...state,
                     likes: {
                         ...state.likes,
-                        tracks: [...state.likes.tracks, action.payload.tracks],
-                        albuns: 
-                        action.payload.tracks.albumSize
-                        === state.likes.tracks.filter(x=>x.albumId === action.payload.tracks.albumId).length - 1
-                        ? action.payload.tracks.albumId : state.likes.albuns 
+                        tracks: trackAlreadyExist ? state.likes.tracks : [...state.likes.tracks, action.payload.tracks],
                     }
                     
                 }
-            }else {
-                return state
-            }
+           
           
         case "user/ADD_SEVERAL_LIKED_TRACKS":
 
-        const albumLiked = {
-            albumId: action.payload.tracks[0].albumId
+        const rightTracks = state.likes.tracks.filter(x=>x!==action.payload.tracks[0].albumId)
+                console.log(action.payload.tracks)
+        const newAlbum = {
+            albumId: action.payload.tracks[0].albumId,
+            albumSize: action.payload.tracks[0].albumSize
         }
-    
-            return {
-                ...state,
-                likes:{
-                    ...state.likes,
-                tracks: state.likes.tracks.concat(action.payload.tracks),
-                albuns: [...state.likes.albuns, albumLiked]
-                },
-               
-        
-            
+        return {
+            ...state,
+           likes:{
+                ...state.likes,
+                albuns: [...state.likes.albuns, newAlbum],
+                tracks: rightTracks.concat(action.payload.tracks),
             }
+        }
         
       
         case "user/REMOVE_SEVERAL_LIKED_TRACKS":
-            console.log(action.payload.albumId)
+            const rightDelTracks = state.likes.tracks.filter(x=>x.albumId!==action.payload.albumId)
+            const rightDelAlbuns = state.likes.albuns.filter(x=>x.albumId!==action.payload.albumId)
             return {
                 ...state,
                 likes: {
                     ...state.likes,
-                    tracks: state.likes.tracks.filter((x:Itracks)=>x.albumId !== action.payload.albumId),
-                    albuns: state.likes.albuns.filter(x=>x.albumId!==action.payload.albumId)
-
+                    albuns:rightDelAlbuns,
+                    tracks: rightDelTracks,
                 }
             }   
       
         case "user/REMOVE_LIKED_TRACK":
-            return {
+
+        const track = state.likes.tracks.find(x=>x.title===action.payload.track_name)
+        
+        return {
                 ...state,
                 likes: {
                     ...state.likes,
                     tracks: state.likes.tracks.filter(x=>x.title!==action.payload.track_name)
+                    
+                
                 }
                 
             }
