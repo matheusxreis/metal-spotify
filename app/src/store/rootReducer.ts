@@ -3,7 +3,7 @@ import { AnyAction } from "@reduxjs/toolkit"
 import { authReducer } from "./auth/reducer"
 import { userReducer } from "./user/reducer"
 import { spotifyReducer } from "./spotify/reducer"
-
+import { themeReducer } from "./theme/reducer"
 
 interface IinitialStateRoot {
     auth: {
@@ -23,6 +23,9 @@ interface IinitialStateRoot {
         albuns: any[];
         artists: any[];
         albumPage: boolean;
+    },
+    theme: {
+        colorCard:string;
     }
 }
 let initialState: IinitialStateRoot = {
@@ -43,6 +46,9 @@ let initialState: IinitialStateRoot = {
         albuns: [],
         artists: [],
         albumPage: false
+    },
+    theme: {
+        colorCard:''
     }
 }
 
@@ -51,7 +57,8 @@ export default function rootReducer(state=initialState, action: AnyAction){
 return {
     auth: authReducer(state.auth, action),
     user: userReducer(state.user, action),
-    spotify: spotifyReducer(state.spotify, action)
+    spotify: spotifyReducer(state.spotify, action),
+    theme: themeReducer(state.theme, action)
 }
 
 

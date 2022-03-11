@@ -18,7 +18,7 @@ export function* getUserInfo(action: AnyAction){
          }
 
          
-    const response: IResponse = yield call(
+   try{ const response: IResponse = yield call(
         spotifyApi.get,
         '/me',
         config  
@@ -31,6 +31,9 @@ export function* getUserInfo(action: AnyAction){
     }
     console.log(response.data)
     yield put({type: "user/GET_USER_INFO", payload})
+}catch{
+    yield put({type:'auth/SIGN_OUT'})
+}
 
 
 }

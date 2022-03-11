@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { HomeContainer } from './styles'
+import { HomeContainer, PlaylistDiv } from './styles'
 import Cover from '../../images/Cover.png'
 import { ListenButton } from '../../components/ListenButton'
 import { RollDiv } from '../../components/RollDiv'
@@ -8,6 +8,7 @@ import { Card } from '../../components/Card'
 import { useSelector, useDispatch } from 'react-redux'
 import { GetAlbuns } from '../../store/spotify/action'
 
+import { PlaylistCard } from '../../components/PlaylistCard'
 import { Link } from 'react-router-dom'
 import { spotifyApi } from '../../api'
 
@@ -75,9 +76,14 @@ useEffect(()=>{
             <SkeletonComponent />
         ): (
             <HomeContainer>
-       
+                <PlaylistDiv>
+                <h1>Boa noite</h1>
 
-            <h2>Tente esses albuns: </h2>
+                <PlaylistCard />
+                </PlaylistDiv>
+                
+            <div className={'containerContent'}>
+           <div> <h2>Tente esses albuns </h2></div>
     
             <RollDiv>
                 {albuns && albuns.map(x=>(
@@ -88,7 +94,7 @@ useEffect(()=>{
                
             </RollDiv>
     
-            <h2>Tente essas bandas: </h2>
+            <div><h2>Tente essas bandas </h2> </div>
             <RollDiv>
                 {artists && artists.map(x=>(
                     <Card 
@@ -101,7 +107,7 @@ useEffect(()=>{
                 ))}
                
             </RollDiv>
-    
+            </div>
     
     
             </HomeContainer>

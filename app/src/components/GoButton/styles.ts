@@ -35,6 +35,15 @@ p {
     margin:0;
     margin-right: auto;
 }
+
+@media(max-width:800px){
+    width:100px;
+
+    p{
+        width:0;
+        opacity:0;
+    }
+}
 }
 
 

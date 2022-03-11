@@ -45,23 +45,28 @@ padding-left: 10px;
 `
 
 export const Header = styled.div`
-display:flex;
+display:grid;
+gap:1fr;
+grid: 'img description';
+//grid-column: 1/3;
+justify-content:start;
 //flex-wrap: wrap;
 height:300px;
 
 max-width:100%;
 margin:20px;
 
-img {
-    max-width:400px;
 
-    height:300px;
+img {
+    grid-area: img;
+    width:300px;
     border-radius: 2px;
     box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
 
 
 }
 div {
+    grid-area: description;
     height:auto;
     display:block;
     margin-top:auto;
@@ -85,6 +90,30 @@ p {
     font-weight:500;
     font-size:19px;
 }
+
+@media(max-width:800px){
+    grid: "img"
+    "description";
+
+    margin-bottom:30px;
+    img {
+        width:200px;
+    }
+    div{
+        h3 {
+            margin-top:5px;
+        }
+        h1 {
+        font-size:30px;
+    }
+
+   
+}
+  } 
+
+  @media(max-width:610px){
+  }
+
 `
 export const Content = styled.div`
 

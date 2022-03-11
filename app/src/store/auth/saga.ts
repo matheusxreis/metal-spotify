@@ -34,6 +34,8 @@ export function* signOut(){
 }
 
 function* getToken(){
+ 
+
     const response:IResponse = yield call(
         api.post, 
         '/auth/token'
@@ -44,6 +46,7 @@ function* getToken(){
     yield put({type: "auth/GET_TOKEN", payload: token})
 
     yield put({type: "@user/GET_USER_INFO", payload: { token }})
+   
     // const config = {
     //     headers: {Authorization : token}
     // }

@@ -7,8 +7,8 @@ interface IFlexContainer {
 export const SidebarContainer = styled.div`
 z-index:3;
 background-color: #000;
-max-width:40%;
-width:286px;
+//max-width:40%;
+width:230px;
 height:100%;
 padding-left: 15px;
 padding-right:15px;
@@ -18,17 +18,32 @@ position: fixed;
 top:0;
 left:0;
 
-img.logo {
-    width:240px;
 
+img.logo {
+    width:200px;
+    
     padding-bottom:40px;
 }
 
+@media(max-width:800px){
+width:180px;
+
+img.logo {
+    width:180px;
+}
+}
+
+div{
+    p{
+        font-size:18px;
+    }
+}
 
 div.InterativeDiv {
    border-bottom: 0.3px solid #c8c8c8;
     margin-top:80px;
     padding-bottom:25px;
+    
    img {
        cursor:pointer;
    }

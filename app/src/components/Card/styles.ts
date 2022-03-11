@@ -4,27 +4,28 @@ import styled from 'styled-components'
 export const CardContainer = styled.div`
 
 position:relative;
-width: 500px;
-max-width:600px;
-height: 400px;
+width: 300px;
+max-width:300px;
+height: 300px;
 margin:10px;
 
 padding:40px 30px;
 
 text-align:center;
 
-background: #313131;
+background: rgba(49,49,49, 0.5);
 border-radius: 4px;
 
 img {
-    width: 260px;
+    max-width: 260px;
     border-radius:2px;
 }
 
 img.bandsImg{
     border-radius:100%;
-    width: 300px;
-    height:300px;
+    max-width: 300px;
+    width:200px;
+    height:200px;
     box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
 }
 
@@ -47,7 +48,9 @@ p {
  }
 
  &:hover {
-    background: #615F5F;
+    //background: #615F5F;
+    background: rgba(49,49,49, 0.7);
+
     filter: brightness(0.8);
     div{
         opacity:1;

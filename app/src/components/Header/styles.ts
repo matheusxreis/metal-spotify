@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
+interface IHeaderContainer {
+    onTop:boolean;
+}
 
-export const HeaderContainer = styled.div `
+export const HeaderContainer = styled.div<IHeaderContainer> `
 
 width:100%;
 z-index:2;
@@ -9,7 +12,9 @@ position:fixed;
 top:0;
 left:0;
 
-background:rgba(0, 0, 0, 0.7);
+transition: 0.4s;
+
+background:${({onTop})=> onTop ? ' ' : 'rgba(0, 0, 0, 0.7);'};
 
 height:80px;
 

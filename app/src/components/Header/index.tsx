@@ -29,6 +29,7 @@ export function Header(){
     const [openOptionDiv, setOpenOptionDiv] = useState<boolean>(false)
     const goOn = useSelector<boolean>((state:any)=>state.auth?.goOn)
 
+    const [scroll, setScroll] = useState<boolean>(true)
     useEffect(()=>{
 
         if(goOn){
@@ -62,9 +63,13 @@ export function Header(){
         window.location.reload()
     }
 
+    useEffect(()=>{
+            window.addEventListener('scroll', ()=>setScroll(window.scrollY===0))
+    }, [])
+
     return (
         <>
-        <HeaderContainer>
+        <HeaderContainer onTop={scroll}>
 
             { username && localStorage.getItem("token_token") ? 
              <GoButton text={username}
